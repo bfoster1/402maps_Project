@@ -1,0 +1,111 @@
+/* Base candidate */
+
+/* Layout
+------------------------------------------------------- */
+#source-ui {
+  box-shadow: rgba(0,0,0,0.1) -2px 0px 0px;
+}
+
+/* Data list pane
+------------------------------------------------------- */
+.offpane-button { margin-left: 5px;}
+
+.layer-content {
+  top: 90px;
+}
+
+[draggable='true'] {
+  cursor: -webkit-grab;
+  cursor: -moz-grab;
+  cursor: grab;
+}
+
+/* Sortable states */
+.sortable-dragging {
+  display:block;
+  position:relative;
+  background:#444;
+  border:1px solid rgba(0,0,0,0.1);
+  border-radius:4px;
+  cursor: -webkit-grabbing;
+  cursor: -moz-grabbing;
+  cursor: grabbing;
+}
+
+.sortable-placeholder {
+  background: rgba(0,0,0,.25);
+  padding: 15px;
+  border-radius: 0;
+}
+
+.empty-state.visible {
+  display: block;
+  padding: 10px;
+  position: relative;
+}
+
+/* Editor pane
+------------------------------------------------------- */
+
+#layers .disable-mask { height: 50px; }
+
+.editor.pane {
+  opacity: 0;
+  z-index: -1;
+}
+
+.editor.pane.target {
+  opacity: 1;
+  z-index: 100;
+}
+
+/* Panes
+------------------------------------------------------- */
+
+input.toggle-conf:checked   ~ nav label.toggle-conf,
+input.toggle-fields:checked ~ nav label.toggle-fields,
+input.toggle-sql:checked    ~ nav label.toggle-sql {
+  background: #404040;
+}
+
+.pane.target div.conf,
+.pane.target div.fields { display:none; }
+
+input.toggle-conf:checked ~ div.conf { display: block; }
+input.toggle-fields:checked ~ div.fields { display: block; }
+
+/* Fields pane
+------------------------------------------------------- */
+
+section:not(.field) + .empty-state { margin: 20px; display: block;}
+
+/* SQL pane
+------------------------------------------------------- */
+.editor div.sql {
+  position:absolute;
+  top:60px; bottom:0px; width:100%;
+  display: block;
+  visibility: hidden;
+  }
+.editor .CodeMirror { top: 50px; }
+
+input.toggle-sql:checked ~ div.sql { visibility:visible; }
+input.toggle-sql:checked ~ div.sql .CodeMirror { visibility:visible; }
+
+/* XRay toggle
+------------------------------------------------------- */
+.xrayswatch,
+.xrayinspector {
+  box-shadow:inset 0px 0px 0px 2px rgba(0,0,0,0.2);
+  cursor: pointer;
+  }
+.xrayswatch:not(.disabled)::before { content: '';}
+.xrayswatch.disabled { background-color:rgba(0,0,0,0.1) !important; }
+.xrayswatch.disabled::before { background-color:rgba(0,0,0,0.1) !important; }
+.xrayinspector::before { visibility:hidden; }
+.xrayinspector:hover::before { visibility:visible; }
+.xrayinspector.active::before { visibility:visible; }
+
+/* Miscellaneous
+------------------------------------------------------- */
+

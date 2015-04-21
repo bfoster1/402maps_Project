@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=utf-8 />
+<title>Chicago Hub Map</title>
+<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+<script src='https://api.tiles.mapbox.com/mapbox.js/v2.1.4/mapbox.js'></script>
+<link href='https://api.tiles.mapbox.com/mapbox.js/v2.1.4/mapbox.css' rel='stylesheet' />
+<style>
+  body { margin:0; padding:0; }
+  #map { position:absolute; top:0; bottom:0; width:100%; }
+</style>
+</head>
+<body>
+
+<script src='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-image/v0.0.4/leaflet-image.js'></script>
+
+
+<style>
+.menu-ui {
+  background:#fff;
+  position:absolute;
+  top:10px;right:10px;
+  z-index:1;
+  border-radius:3px;
+  width:120px;
+  border:1px solid rgba(0,0,0,0.4);
+  }
+  .menu-ui a {
+    font-size:13px;
+    color:#404040;
+    display:block;
+    margin:0;padding:0;
+    padding:10px;
+    text-decoration:none;
+    border-bottom:1px solid rgba(0,0,0,0.25);
+    text-align:center;
+    }
+    .menu-ui a:first-child {
+      border-radius:3px 3px 0 0;
+      }
+    .menu-ui a:last-child {
+      border:none;
+      border-radius:0 0 3px 3px;
+      }
+    .menu-ui a:hover {
+      background:#f8f8f8;
+      color:#404040;
+      }
+    .menu-ui a.active,
+    .menu-ui a.active:hover {
+      background:#3887BE;
+      color:#FFF;
+      }
+
+
+
+
+
+
+.ui-button {
+  position:absolute;
+  top:10px;
+  right:10px;
+  z-index:1000;
+  }
+#map {
+  width:50%;
+  }
+#snapshot {
+  position:absolute;
+  top:0;bottom:0;right:0;
+  width:50%;
+  }
+
+
+
+
+</style>
+
+<!-- jQuery is required for this example. -->
+<script src='https://code.jquery.com/jquery-1.11.0.min.js'></script>
+
+<nav class='menu-ui'>
+  <a href='#' class='active' data-filter='all'>Show all</a>
+  <a href='#' data-filter='LincolnPark'>Lincoln Park</a>
+  <a href='#' data-filter='Chinatown'>Chinatown</a>
+   <a href='#' data-filter='Pilsen'>Pilsen</a>
+  
+</nav>
+<div id='map'></div>
+<button id='snap' class='ui-button'>Take a snapshot</button>
+<div id='snapshot'></div>
+
+<script>
+L.mapbox.accessToken = 'pk.eyJ1IjoiYnJpdHRyZW5pIiwiYSI6IndGSEJsUkEifQ.sxZ169-xvrHkrP-1-Xzivw';
+// In the propeties object for each marker define key's
+// like `rentals`, `fuel`, `tackleshop` that are set to true for false
+// depending on whether or they exist at a location.
+var geojson = [
+
+//Lincoln Park Restaurants
+
+//North Pond
+    {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          -87.63532,
+          41.9268
+        ], 
+        "type": "Point"
+      },
+      "properties": {
+        "title": "North Pond (new american farm to table) 2610 N Cannon Dr Chicago, IL 60614 Phone number (773) 477-5845",
+        "LincolnPark": true,
+        "Chinatown": false,
+        "Pilsen": false,
+        "marker-color": "#551a8b",
+        "marker-size": "large",
+        "marker-symbol": "restaurant",
+
+
+
+      }
+    },
+    //Balena 
+    { 
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          -87.64932,
+          41.93184
+        ], 
+        "type": "Point"
+      },
+      "properties": {
+        "title": "Balena (italian) 1633 N Halsted St Chicago, IL 60614 Phone number (312) 867-3888",
+        "LincolnPark": true,
+        "Chinatown": false,
+        "Pilsen": false,
+        "marker-color": "#551a8b",
+        "marker-size": "large",
+        "marker-symbol": "restaurant",
+
+
+
+      }
+    },
+ //The Local Option 
+
+{
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          -87.656027,
+          41.921696
+        ], 
+        "type": "Point"
+      },
+      "properties": {
+        "title": "The Local Option 1102 W Webster Ave Chicago, IL 60614 Phone number (773) 348-2008",
+        "LincolnPark": true,
+        "Chinatown": false,
+        "Pilsen": false,
+        "marker-color": "#551a8b",
+        "marker-size": "large",
+        "marker-symbol": "restaurant",
+
+
+
+      }
+    },
+
+    //Floriole Cafe & Bakery
+
+    {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          -87.656027,
+          41.9210687
+        ], 
+        "type": "Point"
+      },
+      "properties": {
+        "title": "Floriole Cafe & Bakery 1220 W Webster Ave Chicago, IL 60614 Phone number (773) 883-1313",
+        "LincolnPark": true,
+        "Chinatown": false,
+        "Pilsen": false,
+        "marker-color": "#551a8b",
+        "marker-size": "large",
+        "marker-symbol": "restaurant",
+
+
+
+      }
+    },
+
+//Juno Sushi
+
+   {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          -87.64524,
+          41.92294
+        ], 
+        "type": "Point"
+      },
+      "properties": {
+        "title": "Juno 2638 N Lincoln Chicago, IL 60614 Phone number (773) 935-2000",
+        "LincolnPark": true,
+        "Chinatown": false,
+        "Pilsen":false,
+        "marker-color": "#551a8b",
+        "marker-size": "large",
+        "marker-symbol": "restaurant",
+
+
+
+      }
+    },
+
+//Chinatown Restaurants 
+  // Lao Sze Chuan
+
+   {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          -87.64463,
+          41.84797
+        ], 
+        "type": "Point"
+      },
+      "properties": {
+        "title": "Lao Sze Chuan 2172 S Archer Ave Chicago, IL 60616 Phone number (331) 248-3524",
+        "Lincoln Park": false,
+        "Chinatown": true,
+        "Pilsen": false,
+        "marker-color": "#00ffff",
+        "marker-size": "large",
+        "marker-symbol": "restaurant",
+
+
+
+      }
+    },
+
+
+   //MingHin Cuisine 
+
+   {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          -87.66455,
+          41.84797
+        ], 
+        "type": "Point"
+      },
+      "properties": {
+        "title": "MingHin Cuisine 2168 S Archer Ave Chicago, IL 60616 Phone number (312) 808-1999",
+        "Lincoln Park": false,
+        "Chinatown": true,
+        "Pilsen": false,
+        "marker-color": "#00ffff",
+        "marker-size": "large",
+        "marker-symbol": "restaurant",
+
+
+
+      }
+    },
+ 
+ //Three Happiness
+
+   {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          -87.63388,
+          41.85258
+        ], 
+        "type": "Point"
+      },
+      "properties": {
+        "title": "Three Happiness 209 W Cermak Rd, Chicago, IL 60616 (312) 842-1964",
+        "Lincoln Park": false,
+        "Chinatown": true,
+        "Pilsen": false,
+        "marker-color": "#00ffff",
+        "marker-size": "large",
+        "marker-symbol": "restaurant",
+
+
+
+      }
+    },
+
+
+ //Lao Hunan
+
+   {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          -87.63208,
+          41.85512
+        ], 
+        "type": "Point"
+      },
+      "properties": {
+        "title": "Lao Hunan 2230 S Wentworth Ave Chicago, IL 60616 Phone number (312) 842-7888",
+        "Lincoln Park": false,
+        "Chinatown": true,
+        "Pilsen": false,
+        "marker-color": "#00ffff",
+        "marker-size": "large",
+        "marker-symbol": "restaurant",
+
+
+
+      }
+    },
+
+
+    //Moon Palace  
+
+   {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+         -87.63380,,
+          41.85258
+        ], 
+        "type": "Point"
+      },
+      "properties": {
+        "title": "Moon Palace 216 W Cermak Rd Chicago, IL 60616 Phone number (312) 225-4081",
+        "Lincoln Park": false,
+        "Chinatown": true,
+        "Pilsen": false,
+        "marker-color": "#00ffff",
+        "marker-size": "large",
+        "marker-symbol": "restaurant",
+
+
+
+      }
+    },
+
+   //Pilsen Restaurants 
+    //Nuevo Leon 
+
+   {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          -87.669197,
+          41.857630
+        ], 
+        "type": "Point"
+      },
+      "properties": {
+        "title": "Nuevo Leon 1515 W 18th St Chicago, IL 60608 Phone number (312) 421-1517",
+        "Lincoln Park": false,
+        "Chinatown": false,
+        "Pilsen": true,
+        "marker-color": "#ff0000",
+        "marker-size": "large",
+        "marker-symbol": "restaurant",
+
+
+
+      }
+    },
+
+
+//Taqueria Sabor y Sazon 
+
+   {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          -87.665775,
+          41.841826
+        ], 
+        "type": "Point"
+      },
+      "properties": {
+        "title": "Taqueria Sabor y Sazon 2018 S Blue Island Ave Chicago, IL 60608 Phone number (312) 226-8829",
+        "Lincoln Park": false,
+        "Chinatown": false,
+        "Pilsen": true,
+        "marker-color": "#ff0000",
+        "marker-size": "large",
+        "marker-symbol": "restaurant",
+
+
+
+      }
+    },
+
+//Birreria Reyes   
+
+   {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          -87.669197,
+          41.857625
+        ], 
+        "type": "Point"
+      },
+      "properties": {
+        "title": "Birreria Reyes 1322 W 18th St Chicago, IL 60608 Phone number (312) 733-2613",
+        "Lincoln Park": false,
+        "Chinatown": false,
+        "Pilsen": true, 
+        "marker-color": "#ff0000",
+        "marker-size": "large",
+        "marker-symbol": "restaurant",
+
+      }
+    },
+
+    //  Carnitas Urupan
+
+   {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          -87.669197,
+          41.857637
+        ], 
+        "type": "Point"
+      },
+      "properties": {
+        "title": "Carnitas Uruapan 1725 W 18th St Chicago, IL 60608 Phone number (312) 226-2654",
+        "Lincoln Park": false,
+        "Chinatown": false,
+        "Pilsen": true,
+        "marker-color": "#ff0000",
+        "marker-size": "large",
+        "marker-symbol": "restaurant",
+
+
+
+      }
+    }
+
+
+];
+
+
+var snapshot = document.getElementById('snapshot');
+var map = L.mapbox.map('map', 'examples.map-i875kd35')
+  .setView([41.68, -87.63], 10);
+
+document.getElementById('snap').addEventListener('click', function() {
+    leafletImage(map, doImage);
+});
+
+function doImage(err, canvas) {
+    var img = document.createElement('img');
+    var dimensions = map.getSize();
+    img.width = dimensions.x;
+    img.height = dimensions.y;
+    img.src = canvas.toDataURL();
+    snapshot.innerHTML = '';
+    snapshot.appendChild(img);
+}
+
+
+
+
+
+
+
+//already
+//var map = L.mapbox.map('map', 'examples.map-h67hf2ic')
+  //  .setView([41.68, -87.63], 10)
+
+var markers = L.mapbox.featureLayer()
+    .setGeoJSON(geojson)
+    .addTo(map);
+
+
+$('.menu-ui a').on('click', function() {
+    // For each filter link, get the 'data-filter' attribute value.
+    var filter = $(this).data('filter');
+    $(this).addClass('active').siblings().removeClass('active');
+    markers.setFilter(function(f) {
+        // If the data-filter attribute is set to "all", return
+        // all (true). Otherwise, filter on markers that have
+        // a value set to true based on the filter name.
+        return (filter === 'all') ? true : f.properties[filter] === true;
+    });
+    return false;
+});
+
+ var layers = {
+      Streets: L.mapbox.tileLayer('examples.map-i87786ca'),
+      Outdoors: L.mapbox.tileLayer('examples.ik7djhcc'),
+      Satellite: L.mapbox.tileLayer('examples.map-igb471ik')
+  };
+
+  layers.Streets.addTo(map);
+  L.control.layers(layers).addTo(map);
+
+for images
+
+  var images = L.mapbox.featureLayer()
+    .on('layeradd', function(e) {
+        e.layer.bindPopup('<img src="' + e.layer.feature.properties.image + '" />', {
+            minWidth: 340
+        });
+    })
+    .addTo(map);
+
+
+
+
+
+ </script>
+  </body>
+</html>

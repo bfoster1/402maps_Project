@@ -1,0 +1,28 @@
+_prefs: 
+  baselayer: ''
+  saveCenter: true
+_properties: {}
+attribution: "<a href='https://www.mapbox.com/about/maps/' target='_blank'>&copy; Mapbox &copy; OpenStreetMap</a> <a class='mapbox-improve-map' href='https://www.mapbox.com/map-feedback/' target='_blank'>Improve this map</a>"
+bounds: 
+  - -180
+  - -85.0511
+  - 180
+  - 85.0511
+center: 
+  - -87.6712
+  - 41.9151
+  - 12
+description: ''
+format: "png8:m=h"
+interactivity_layer: ''
+layers: null
+maxzoom: 18
+minzoom: 0
+name: Loose leaf
+source: "mapbox:///mapbox.mapbox-terrain-v1,mapbox.mapbox-streets-v4"
+styles: 
+  - style.mss
+  - roads.mss
+  - terrain.mss
+  - labels.mss
+template: ''

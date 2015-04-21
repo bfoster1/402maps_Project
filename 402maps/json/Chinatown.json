@@ -1,0 +1,129 @@
+//Chinatown Restaurants 
+  // Lao Sze Chuan
+
+   {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          -87.64463,
+          41.84797
+        ], 
+        "type": "Point"
+      },
+      "properties": {
+        "title": "Lao Sze Chuan 2172 S Archer Ave Chicago, IL 60616 Phone number (331) 248-3524",
+        "Lincoln Park": false,
+        "Chinatown": true,
+        "Pilsen": false,
+        "marker-color": "#00ffff",
+        "marker-size": "large",
+        "marker-symbol": "restaurant",
+
+
+
+      }
+    },
+
+
+   //MingHin Cuisine 
+
+   {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          -87.66455,
+          41.84797
+        ], 
+        "type": "Point"
+      },
+      "properties": {
+        "title": "MingHin Cuisine 2168 S Archer Ave Chicago, IL 60616 Phone number (312) 808-1999",
+        "Lincoln Park": false,
+        "Chinatown": true,
+        "Pilsen": false,
+        "marker-color": "#00ffff",
+        "marker-size": "large",
+        "marker-symbol": "restaurant",
+
+
+
+      }
+    },
+ 
+
+ //Three Happiness
+
+   {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          -87.63388,
+          41.85258
+        ], 
+        "type": "Point"
+      },
+      "properties": {
+        "title": "Three Happiness 209 W Cermak Rd, Chicago, IL 60616 (312) 842-1964",
+        "Lincoln Park": false,
+        "Chinatown": true,
+        "Pilsen": false,
+        "marker-color": "#00ffff",
+        "marker-size": "large",
+        "marker-symbol": "restaurant",
+
+
+
+      }
+    },
+
+
+  //Lao Hunan
+
+   {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          -87.63208,
+          41.85512
+        ], 
+        "type": "Point"
+      },
+      "properties": {
+        "title": "Lao Hunan 2230 S Wentworth Ave Chicago, IL 60616 Phone number (312) 842-7888",
+        "Lincoln Park": false,
+        "Chinatown": true,
+        "Pilsen": false,
+        "marker-color": "#00ffff",
+        "marker-size": "large",
+        "marker-symbol": "restaurant",
+
+
+
+      }
+    },
+
+
+ //Moon Palace  
+
+   {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+         -87.63380,
+          41.85258
+        ], 
+        "type": "Point"
+      },
+      "properties": {
+        "title": "Moon Palace 216 W Cermak Rd Chicago, IL 60616 Phone number (312) 225-4081",
+        "Lincoln Park": false,
+        "Chinatown": true,
+        "Pilsen": false,
+        "marker-color": "#00ffff",
+        "marker-size": "large",
+        "marker-symbol": "restaurant",
+
+
+
+      }
+    },

@@ -1,0 +1,122 @@
+//Lincoln Park Neighborhood 
+  
+//North Pond
+    {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          -87.63532,
+          41.9268
+        ], 
+        "type": "Point"
+      },
+      "properties": {
+        "title": "North Pond (new american farm to table) 2610 N Cannon Dr Chicago, IL 60614 Phone number (773) 477-5845",
+        "Lincoln Park": true,
+        "Chinatown": false,
+        "Pilsen": false,
+        "marker-color": "#551a8b",
+        "marker-size": "large",
+        "marker-symbol": "restaurant",
+
+      }
+    },
+    
+     //Balena 
+    { 
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          -87.64932,
+          41.93184
+        ], 
+        "type": "Point"
+      },
+      "properties": {
+        "title": "Balena (italian) 1633 N Halsted St Chicago, IL 60614 Phone number (312) 867-3888",
+        "Lincoln Park": true,
+        "Chinatown": false,
+        "Pilsen": false,
+        "marker-color": "#551a8b",
+        "marker-size": "large",
+        "marker-symbol": "restaurant",
+
+
+
+      }
+    },
+ //The Local Option
+
+{
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          -87.656027,
+          41.921696
+        ], 
+        "type": "Point"
+      },
+      "properties": {
+        "title": "The Local Option 1102 W Webster Ave Chicago, IL 60614 Phone number (773) 348-2008",
+        "Lincoln Park": true,
+        "Chinatown": false,
+        "Pilsen": false,
+        "marker-color": "#551a8b",
+        "marker-size": "large",
+        "marker-symbol": "restaurant",
+
+
+
+      }
+    },
+
+    
+//Floriole Cafe & Bakery
+
+    {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          -87.656027,
+          41.9210687
+        ], 
+        "type": "Point"
+      },
+      "properties": {
+        "title": "Floriole Cafe & Bakery 1220 W Webster Ave Chicago, IL 60614 Phone number (773) 883-1313",
+        "Lincoln Park": true,
+        "Chinatown": false,
+        "Pilsen": false,
+        "marker-color": "#551a8b",
+        "marker-size": "large",
+        "marker-symbol": "restaurant",
+
+
+
+      }
+    },
+
+
+   //Juno Sushi
+
+   {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          -87.64524,
+          41.92294
+        ], 
+        "type": "Point"
+      },
+      "properties": {
+        "title": "Juno 2638 N Lincoln Chicago, IL 60614 Phone number (773) 935-2000",
+        "Lincoln Park": true,
+        "Chinatown": false,
+        "Pilsen":false,
+        "marker-color": "#551a8b",
+        "marker-size": "large",
+        "marker-symbol": "restaurant",
+
+
+
+      }

@@ -1,0 +1,99 @@
+//Pilsen Restaurants 
+    //Nuevo Leon 
+
+   {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          -87.669197,
+          41.857630
+        ], 
+        "type": "Point"
+      },
+      "properties": {
+        "title": "Nuevo Leon 1515 W 18th St Chicago, IL 60608 Phone number (312) 421-1517",
+        "Lincoln Park": false,
+        "Chinatown": false,
+        "Pilsen": true,
+        "marker-color": "#ff0000",
+        "marker-size": "large",
+        "marker-symbol": "restaurant",
+
+
+
+      }
+    },
+
+//Taqueria Sabor y Sazon 
+
+   {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          -87.665775,
+          41.841826
+        ], 
+        "type": "Point"
+      },
+      "properties": {
+        "title": "Taqueria Sabor y Sazon 2018 S Blue Island Ave Chicago, IL 60608 Phone number (312) 226-8829",
+        "Lincoln Park": false,
+        "Chinatown": false,
+        "Pilsen": true,
+        "marker-color": "#ff0000",
+        "marker-size": "large",
+        "marker-symbol": "restaurant",
+
+
+
+      }
+    },
+
+
+//Birreria Reyes   
+
+   {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          -87.669197,
+          41.857625
+        ], 
+        "type": "Point"
+      },
+      "properties": {
+        "title": "Birreria Reyes 1322 W 18th St Chicago, IL 60608 Phone number (312) 733-2613",
+        "Lincoln Park": false,
+        "Chinatown": false,
+        "Pilsen": true, 
+        "marker-color": "#ff0000",
+        "marker-size": "large",
+        "marker-symbol": "restaurant",
+
+      }
+    },
+
+ //  Carnitas Urupan
+
+   {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          -87.669197,
+          41.857637
+        ], 
+        "type": "Point"
+      },
+      "properties": {
+        "title": "Carnitas Uruapan 1725 W 18th St Chicago, IL 60608 Phone number (312) 226-2654",
+        "Lincoln Park": false,
+        "Chinatown": false,
+        "Pilsen": true,
+        "marker-color": "#ff0000",
+        "marker-size": "large",
+        "marker-symbol": "restaurant",
+
+
+
+      }
+    }

@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=utf-8 />
+<title>Chicago Hub Map</title>
+<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+<script src='https://api.tiles.mapbox.com/mapbox.js/v2.1.4/mapbox.js'></script>
+<link href='https://api.tiles.mapbox.com/mapbox.js/v2.1.4/mapbox.css' rel='stylesheet' />
+<style>
+  body { margin:0; padding:0; }
+  #map { position:absolute; top:0; bottom:0; width:100%; }
+</style>
+</head>
+<body>
+
+<script src='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-image/v0.0.4/leaflet-image.js'></script>
+
+
+<style>
+.menu-ui {
+  background:#fff;
+  position:absolute;
+  top:10px;right:10px;
+  z-index:1;
+  border-radius:3px;
+  width:120px;
+  border:1px solid rgba(0,0,0,0.4);
+  }
+  .menu-ui a {
+    font-size:13px;
+    color:#404040;
+    display:block;
+    margin:0;padding:0;
+    padding:10px;
+    text-decoration:none;
+    border-bottom:1px solid rgba(0,0,0,0.25);
+    text-align:center;
+    }
+    .menu-ui a:first-child {
+      border-radius:3px 3px 0 0;
+      }
+    .menu-ui a:last-child {
+      border:none;
+      border-radius:0 0 3px 3px;
+      }
+    .menu-ui a:hover {
+      background:#f8f8f8;
+      color:#404040;
+      }
+    .menu-ui a.active,
+    .menu-ui a.active:hover {
+      background:#3887BE;
+      color:#FFF;
+      }
+
+
+
+
+
+
+.ui-button {
+  position:absolute;
+  top:10px;
+  right:10px;
+  z-index:1000;
+  }
+#map {
+  width:50%;
+  }
+#snapshot {
+  position:absolute;
+  top:0;bottom:0;right:0;
+  width:50%;
+  }
+
+
+
+
+</style>
+
+<!-- jQuery is required for this example. -->
+<script src='https://code.jquery.com/jquery-1.11.0.min.js'></script>
+
+<nav class='menu-ui'>
+  <a href='#' class='active' data-filter='all'>Show all</a>
+  <a href='#' data-filter='fastfood'>Fast Food</a>
+  <a href='#' data-filter='restaurant'>Pub</a>
+   <a href='#' data-filter='cuisine'>Cuisine/Bistro</a>
+  <a href='#' data-filter='bakery'>Bakery</a>
+   
+</nav>
+<div id='map'></div>
+<button id='snap' class='ui-button'>Take a snapshot</button>
+<div id='snapshot'></div>
+
+<script>
+L.mapbox.accessToken = 'pk.eyJ1IjoiYnJpdHRyZW5pIiwiYSI6IndGSEJsUkEifQ.sxZ169-xvrHkrP-1-Xzivw';
+// In the propeties object for each marker define key's
+// like `rentals`, `fuel`, `tackleshop` that are set to true for false
+// depending on whether or they exist at a location.
+var geojson = [
+
+//Near NorthSide Neighborhood Fast Food
+    {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          -87.622841,
+          41.8942440000
+        ], 
+        "type": "Point"
+      },
+      "properties": {
+        "title": "Near Northside Neighborhood- Pockets: 205 E. Ohio Street",
+        "fastfood": true,
+        "restaurant": false,
+        "bakery": false,
+        "cuisine":false,
+        "marker-color": "#551a8b",
+        "marker-size": "large",
+        "marker-symbol": "fast-food",
+
+
+
+      }
+    },
+    //Panda Express
+    {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          -87.62432,
+          41.89535
+        ], 
+        "type": "Point"
+      },
+      "properties": {
+        "title": "Near Northside Neighborhood- Panda Express: 520 N. Michigan Avenue",
+        "fastfood": true,
+        "restaurant": false,
+        "bakery": false,
+        "cuisine":false,
+        "marker-color": "#551a8b",
+        "marker-size": "large",
+        "marker-symbol": "fast-food",
+
+
+
+      }
+    },
+ //McDonald's 
+
+{
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          -87.6258814745,
+          41.8316780217
+        ], 
+        "type": "Point"
+      },
+      "properties": {
+        "title": "Near Northside Neighborhood- McDonald's: 405 N Wabash Avenue",
+        "fastfood": true,
+        "restaurant": false,
+        "bakery": false,
+        "cuisine":false,
+        "marker-color": "#551a8b",
+        "marker-size": "large",
+        "marker-symbol": "fast-food",
+
+
+
+      }
+    },
+
+    //LYFE Kitchen
+
+    {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          -87.630556,
+          41.888056
+        ], 
+        "type": "Point"
+      },
+      "properties": {
+        "title": "Near Northside Neighborhood- LYFE Kitchen: 419 N Clark St",
+        "fastfood": true,
+        "restaurant": false,
+        "bakery": false,
+        "cuisine":false,
+        "marker-color": "#551a8b",
+        "marker-size": "large",
+        "marker-symbol": "fast-food",
+
+
+
+      }
+    },
+
+//Near North Side Pubs
+
+   {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          -87.6784917,
+          41.92224
+        ], 
+        "type": "Point"
+      },
+      "properties": {
+        "title": "Near Northside Neighborhood- Fado Irish Pub: 100 W Grand Avenue",
+        "fastfood": false,
+        "restaurant": true,
+        "bakery": false,
+        "cuisine":false,
+        "marker-color": "#00ffff",
+        "marker-size": "large",
+        "marker-symbol": "restaurant",
+
+
+
+      }
+    },
+
+
+  // Timothy Pub
+
+   {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          -87.621,
+          41.893
+        ], 
+        "type": "Point"
+      },
+      "properties": {
+        "title": "Near Northside Neighborhood-  Timothy O' Toole's Pub: 622 N Fairbanks Ct",
+        "fastfood": false,
+        "restaurant": true,
+        "bakery": false,
+        "cuisine":false,
+        "marker-color": "#00ffff",
+        "marker-size": "large",
+        "marker-symbol": "restaurant",
+
+
+
+      }
+    },
+
+
+   //Monk's Pub
+
+   {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          -87.630886,
+          41.885767
+        ], 
+        "type": "Point"
+      },
+      "properties": {
+        "title": "Near Northside Neighborhood- Monk's Pub: 205 W Lake St",
+        "fastfood": false,
+        "restaurant": true,
+        "bakery": false,
+        "cuisine":false,
+        "marker-color": "#00ffff",
+        "marker-size": "large",
+        "marker-symbol": "restaurant",
+
+
+
+      }
+    },
+ 
+ //Celtic Crossings Irish Pub
+
+   {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          -87.622841,
+          41.8942440000
+        ], 
+        "type": "Point"
+      },
+      "properties": {
+        "title": "Near Northside Neighborhood- Celtic Crossings Irish Pub: 751 N. Clark Street",
+        "fastfood": false,
+        "restaurant": true,
+        "bakery": false,
+        "cuisine":false,
+        "marker-color": "#00ffff",
+        "marker-size": "large",
+        "marker-symbol": "restaurant",
+
+
+
+      }
+    },
+
+
+ //Near Northside Cuisines
+ //Gaylord 
+
+   {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          -87.6275,
+          41.89972
+        ], 
+        "type": "Point"
+      },
+      "properties": {
+        "title": "Near Northside Neighborhood- Gaylord Fine Indian Cuisine: 100 E. Walton St.",
+        "fastfood": false,
+        "restaurant": false,
+        "bakery": false,
+        "cuisine":true,
+        "marker-color": "#ff0000",
+        "marker-size": "large",
+        "marker-symbol": "bar",
+
+
+
+      }
+    },
+
+
+    //Garlic and Chill Thai Cuisine 
+
+   {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          -87.6326862,
+          41.8936163
+        ], 
+        "type": "Point"
+      },
+      "properties": {
+        "title": "Near Northside Neighborhood- Garlic Thai Indian Cuisine: 1232 N La Salle Dr. ",
+        "fastfood": false,
+        "restaurant": false,
+        "bakery": false,
+        "cuisine":true,
+        "marker-color": "#ff0000",
+        "marker-size": "large",
+        "marker-symbol": "bar",
+
+
+
+      }
+    },
+
+
+    //Bistrot Zinc
+
+   {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          -87.6282,
+          41.896679
+        ], 
+        "type": "Point"
+      },
+      "properties": {
+        "title": "Near Northside Neighborhood- Bistrot Zinc: 1131 N State St",
+        "fastfood": false,
+        "restaurant": false,
+        "bakery": false,
+        "cuisine":true,
+        "marker-color": "#ff0000",
+        "marker-size": "large",
+        "marker-symbol": "bar",
+
+
+
+      }
+    },
+
+
+//Near Northside Community
+//Sprinkles 
+
+   {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          -87.62425,
+          41.900464
+        ], 
+        "type": "Point"
+      },
+      "properties": {
+        "title": "Near Northside Neighborhood- Sprinkles Cupcakes: E Walton St",
+        "fastfood": false,
+        "restaurant": false,
+        "bakery": true,
+        "cuisine":false,
+        "marker-color": "#00ff00",
+        "marker-size": "large",
+        "marker-symbol": "bakery",
+
+
+
+      }
+    },
+
+//La Fournette  
+
+   {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          -87.63493,
+          41.88858
+        ], 
+        "type": "Point"
+      },
+      "properties": {
+        "title": "Near Northside Neighborhood- La Fournette: 1547 N Wells St",
+        "fastfood": false,
+        "restaurant": false,
+        "bakery": true,
+        "cuisine":false,
+        "marker-color": "#00ff00",
+        "marker-size": "large",
+        "marker-symbol": "bakery",
+
+
+
+      }
+    },
+
+    //More
+
+   {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          -87.625,
+          41.899722
+        ], 
+        "type": "Point"
+      },
+      "properties": {
+        "title": "Near Northside Neighborhood- More Bakery: E Delaware Pl",
+        "fastfood": false,
+        "restaurant": false,
+        "bakery": true,
+        "cuisine":false,
+        "marker-color": "#00ff00",
+        "marker-size": "large",
+        "marker-symbol": "bakery",
+
+
+
+      }
+    },
+
+
+
+    //Lincoln Park 
+{
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          -87.652866,
+          41.925051
+        ], 
+        "type": "Point"
+      },
+      "properties": {
+        "title": "Lincoln Park Neighborhood- Burger King: 1401 W. Fullerton Ave",
+        "fastfood": true,
+        "restaurant": false,
+        "bakery": false,
+        "cuisine":false,
+        "marker-color": "#551a8b",
+        "marker-size": "large",
+        "marker-symbol": "fast-food",
+
+
+
+      }
+    },
+    //McDonald's
+    {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          -87.652860,
+          41.92502
+        ], 
+        "type": "Point"
+      },
+      "properties": {
+        "title": "Lincoln Park Neighborhood- McDonald's: 2635 N. Clark St",
+        "fastfood": true,
+        "restaurant": false,
+        "bakery": false,
+        "cuisine":false,
+        "marker-color": "#551a8b",
+        "marker-size": "large",
+        "marker-symbol": "fast-food",
+
+
+
+      }
+    },
+ //Chicago's Dog House 
+
+{
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          -87.7280,
+          41.9248
+        ], 
+        "type": "Point"
+      },
+      "properties": {
+        "title": "Chicago Dog House Neighborhood- McDonald's: 816 W Fullerton Ave",
+        "fastfood": true,
+        "restaurant": false,
+        "bakery": false,
+        "cuisine":false,
+        "marker-color": "#551a8b",
+        "marker-size": "large",
+        "marker-symbol": "fast-food",
+
+
+
+      }
+    },
+
+
+
+//Lincoln Park  Pubs
+
+   {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          -87.6740000,
+          41.9500
+        ], 
+        "type": "Point"
+      },
+      "properties": {
+        "title": "Lincoln Park Neighborhood- Jake's Pub: 2932 North Clark St",
+        "fastfood": false,
+        "restaurant": true,
+        "bakery": false,
+        "cuisine":false,
+        "marker-color": "#00ffff",
+        "marker-size": "large",
+        "marker-symbol": "restaurant",
+
+
+
+      }
+    },
+
+
+  // Bucktown Pb
+
+   {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          -87.662428,
+          41.913689
+        ], 
+        "type": "Point"
+      },
+      "properties": {
+        "title": "Lincoln Park Neighborhood- Bucktown Pub: 1658 W Cortland St",
+        "fastfood": false,
+        "restaurant": true,
+        "bakery": false,
+        "cuisine":false,
+        "marker-color": "#00ffff",
+        "marker-size": "large",
+        "marker-symbol": "restaurant",
+
+
+
+      }
+    },
+
+
+   //George Street Pub
+
+   {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          -87.648715,
+          41.918683
+        ], 
+        "type": "Point"
+      },
+      "properties": {
+        "title": "Lincoln Park Neighborhood- George Street Pub: 2858 N Halsted St",
+        "fastfood": false,
+        "restaurant": true,
+        "bakery": false,
+        "cuisine":false,
+        "marker-color": "#00ffff",
+        "marker-size": "large",
+        "marker-symbol": "restaurant",
+
+
+
+      }
+    },
+ 
+ 
+
+
+ //Near Northside Cuisines
+ //Miss Asia
+
+   {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          -87.640058,
+          41.9330050000
+        ], 
+        "type": "Point"
+      },
+      "properties": {
+        "title": "Lincoln Park Neighborhood- Miss Asia Cuisine: 434 W Diversey Pkwy.",
+        "fastfood": false,
+        "restaurant": false,
+        "bakery": false,
+        "cuisine":true,
+        "marker-color": "#ff0000",
+        "marker-size": "large",
+        "marker-symbol": "bar",
+
+
+
+      }
+    },
+
+
+    //Macku Sushi
+
+   {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          -87.674972,
+          41.929411
+        ], 
+        "type": "Point"
+      },
+      "properties": {
+        "title": "Lincoln Park Neighborhood- Macku Sushi: 2239 N Clybourn Ave ",
+        "fastfood": false,
+        "restaurant": false,
+        "bakery": false,
+        "cuisine":true,
+        "marker-color": "#ff0000",
+        "marker-size": "large",
+        "marker-symbol": "bar",
+
+
+
+      }
+    },
+
+
+    //Simply It
+
+   {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          -87.69,
+          41.97
+        ], 
+        "type": "Point"
+      },
+      "properties": {
+        "title": "Lincoln Park Neighborhood- Simply It: 2269 N Lincoln Ave",
+        "fastfood": false,
+        "restaurant": false,
+        "bakery": false,
+        "cuisine":true,
+        "marker-color": "#ff0000",
+        "marker-size": "large",
+        "marker-symbol": "bar",
+
+
+
+      }
+    },
+
+
+//Lincoln Park Community Bakeries
+//Swirlz Cupcakes
+
+   {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          -87.667198,
+          41.923102
+        ], 
+        "type": "Point"
+      },
+      "properties": {
+        "title": "Lincoln Park Neighborhood- Swirlz Cupcakes: 705 W Belden Ave",
+        "fastfood": false,
+        "restaurant": false,
+        "bakery": true,
+        "cuisine":false,
+        "marker-color": "#00ff00",
+        "marker-size": "large",
+        "marker-symbol": "bakery",
+
+
+
+      }
+    },
+
+//Sweet Mandy B's 
+
+   {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          -87.66828,
+          41.918588
+        ], 
+        "type": "Point"
+      },
+      "properties": {
+        "title": "Lincoln Park Neighborhood- Sweet Mandy B's: 1208 W Webster Ave",
+        "fastfood": false,
+        "restaurant": false,
+        "bakery": true,
+        "cuisine":false,
+        "marker-color": "#00ff00",
+        "marker-size": "large",
+        "marker-symbol": "bakery",
+
+
+
+      }
+    },
+
+    //Delightful Pastries 
+
+   {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          -87.63486436,
+          41.9132027748
+        ], 
+        "type": "Point"
+      },
+      "properties": {
+        "title": "Lincoln Park Neighborhood- Delightful Pastries: 1710 N Wells Street",
+        "fastfood": false,
+        "restaurant": false,
+        "bakery": true,
+        "cuisine":false,
+        "marker-color": "#00ff00",
+        "marker-size": "large",
+        "marker-symbol": "bakery",
+
+
+
+      }
+    },
+
+
+    //op
+    {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          -87.6500,
+          41.9200
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "title": "Marina #2",
+        "fastfood": false,
+        "restaurant": true,
+        "bakery": false,
+        "cuisine":false,
+        "marker-color": "#00ffff",
+        "marker-size": "large",
+        "marker-symbol": "restaurant"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          -90.4444937706,
+          41.807478357821
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "title": "Marina #3",
+        "fastfood": false,
+        "restaurant": true,
+        "bakery": true,
+        "cuisine":false,
+        "marker-color": "#00ff00",
+        "marker-size": "large",
+        "marker-symbol": "bakery"
+      }
+    },
+
+   {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          -85.635720443726,
+          41.953812390495
+        ], 
+        "type": "Point"
+      },
+      "properties": {
+        "title": "Near Northside Neighborhood",
+        "fastfood": false,
+        "restaurant": false,
+        "bakery": false,
+        "cuisine":true,
+        "marker-color": "#ff0000",
+        "marker-size": "large",
+        "marker-symbol": "bar"
+      }
+    }
+
+];
+
+
+var snapshot = document.getElementById('snapshot');
+var map = L.mapbox.map('map', 'examples.map-i875kd35')
+  .setView([41.68, -87.63], 10);
+
+document.getElementById('snap').addEventListener('click', function() {
+    leafletImage(map, doImage);
+});
+
+function doImage(err, canvas) {
+    var img = document.createElement('img');
+    var dimensions = map.getSize();
+    img.width = dimensions.x;
+    img.height = dimensions.y;
+    img.src = canvas.toDataURL();
+    snapshot.innerHTML = '';
+    snapshot.appendChild(img);
+}
+
+
+
+
+
+
+
+//already
+//var map = L.mapbox.map('map', 'examples.map-h67hf2ic')
+  //  .setView([41.68, -87.63], 10)
+
+var markers = L.mapbox.featureLayer()
+    .setGeoJSON(geojson)
+    .addTo(map);
+
+
+$('.menu-ui a').on('click', function() {
+    // For each filter link, get the 'data-filter' attribute value.
+    var filter = $(this).data('filter');
+    $(this).addClass('active').siblings().removeClass('active');
+    markers.setFilter(function(f) {
+        // If the data-filter attribute is set to "all", return
+        // all (true). Otherwise, filter on markers that have
+        // a value set to true based on the filter name.
+        return (filter === 'all') ? true : f.properties[filter] === true;
+    });
+    return false;
+});
+
+ var layers = {
+      Streets: L.mapbox.tileLayer('examples.map-i87786ca'),
+      Outdoors: L.mapbox.tileLayer('examples.ik7djhcc'),
+      Satellite: L.mapbox.tileLayer('examples.map-igb471ik')
+  };
+
+  layers.Streets.addTo(map);
+  L.control.layers(layers).addTo(map);
+
+//for images
+
+  var images = L.mapbox.featureLayer()
+    .on('layeradd', function(e) {
+        e.layer.bindPopup('<img src="' + e.layer.feature.properties.image + '" />', {
+            minWidth: 340
+        });
+    })
+    .addTo(map);
+
+
+
+
+
+</script>
+</body>
+</html>
